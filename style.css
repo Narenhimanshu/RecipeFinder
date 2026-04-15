@@ -1,0 +1,177 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* body */
+
+body{
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(
+  135deg,
+  #2F6DB3,
+  #4A5FBF,
+  #7A5DA8,
+  #D88A2E,
+  #E3B33C,
+  #8CCB6A
+);
+    font-family: sans-serif;
+}
+
+/* container */
+.container{
+    width: 100%;
+    background: url("pic.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 70px 20px;
+    text-align: center;
+    color: #1E293B;
+}
+
+/* container h2 */
+
+.container h2{
+    font-size: 36px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+.container p{
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+/* search box */
+
+.searchBox{
+    max-width: 600px;
+    /* background:red; */
+    margin: 15px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* search bos input */
+
+.searchBox input{
+    padding: 12px;
+    width: 70%;
+    border-radius: 5px 0 0 5px;
+    outline: 0;
+    border: 1px solid rgb(228, 69, 69);
+    font-size: 1rem;
+}
+
+/* search button */
+.searchBox button{
+    padding: 12px 20px;
+    background: rgb(238, 69, 69);
+    border: 0;
+    outline: none;
+    border: 1px solid rgb(223, 74, 74);
+    border-radius: 0 5px 5px 0;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* not found */
+.notFound{
+    text-align: center;
+    margin-top: 30px;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+/* recipes div */
+.recipes{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+/* recipe card */
+.recipe-card{
+    width: 200px;
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+    text-align: center;
+}
+.recipe-card img{
+    width: 100%;
+    height: 120px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+/* recipe-card button */
+
+.recipe-card button{
+    padding: 4px 10px;
+    background: rgb(91, 167, 91);
+    color: #fff;
+    border-radius: 5px;
+    border: 0;
+    margin:10px 0 ;
+    cursor: pointer;
+}
+
+/* popup card */
+.popup-card{
+    background: rgba(255,255,255,0.15);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    max-height:80vh;
+   overflow-y: auto;
+    border: 2px solid red;
+    display: none;
+    z-index: 10;
+}
+
+.recipe-card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* search button hover */
+.searchBox button:hover{
+    background: rgb(255, 50, 50);
+    transform: scale(1.05);
+}
+
+/* popup card h3 */
+.popup-card h3{
+    margin: 12px 0;
+    color: #333;
+    font-size: 16px;
+    overflow-y: auto;
+    max-height: 280px;
+    padding-right: 10px; 
+}
+/* close btn */
+.close-btn{
+    position: absolute;
+    background-color: rgb(255, 31, 31);
+    top: 20px;
+    right: 30px;
+    padding: 6px;
+    border: 0;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
