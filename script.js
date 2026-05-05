@@ -1,76 +1,61 @@
-function searchRecipes(){
-    const searchInput=document.getElementById("searchInput").value;
-    const recipesDiv=document.getElementById("recipes");
-    const notFoundDiv=document.getElementById("notFound");
+const searchBtn=document.getElementById("searchBtn")
 
-    // clear previous result
-    recipesDiv.innerHTML='';
-    notFoundDiv.style.display='none'
+searchBtn.addEventListener("click",()=>{
+    const searchInputBox=document.getElementById("searchInput").value;
+    const recipeDiv=document.getElementById("recipes");
+const notFoundDiv=document.getElementById("notFound");
 
-    if(searchInput.trim()===''){
-        notFoundDiv.innerHTML="Please enter the Recipe name to search!"
-        notFoundDiv.style.display='block'
-        return;
-    }
+// previoud data 
+notFoundDiv.innerHTML="";
+recipeDiv.innerHTML="";
 
-    
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInput}`)
-    .then(response=>response.json())
-    .then(data=> {
-        if(!data.meals){
-            notFoundDiv.innerHTML='Recipe not found ,please try another search !'
-            notFoundDiv.style.display='block';
-        }
-         else{
-            data.meals.forEach(meal => {
-                const card=document.createElement('div');
-                card.classList.add('recipe-card');
-
-                card.innerHTML=`
-                <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-                <h3>${meal.strMeal}</h3>
-                <p>${meal.strCategory}</p>
-                <p>${meal.strArea}</p>
-                <button onclick="viewRecipes('${meal.idMeal}')">View Recipes</button>
-                `;
-                recipesDiv.appendChild(card);     
-            });
-    }
-    })
+if(searchInputBox.trim()===""){
+    alert("Please Search you recipe")
+    recipeDiv.style.display=""
+    return;
 }
-
-// view recipe
-
-function viewRecipes(mealId){
-    const popupCard = document.getElementById("popupCard");
-    const recipeTitle = document.getElementById("recipeTitle");
-    const recipeDetails = document.getElementById("recipeDetails");
-
-    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
-
-    .then(response => response.json())
-    .then(data => {
-        const meal = data.meals[0];
-
-        recipeTitle.innerText = meal.strMeal;
-        recipeDetails.innerText = meal.strInstructions;
-
-        popupCard.style.display = 'block';
-    })
-    .catch(error => {
-        console.log("Error fetching recipe:", error);
-    });
-}
-
-// close btn
-function closeRecipe(){
-    document.getElementById("popupCard").style.display='none';
-}
-
-// enter
-const searchInput=document.getElementById("searchInput");
-searchInput.addEventListener("keydown",(e)=>{
-    if(e.key==="Enter"){
-        searchRecipes();
+  fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInputBox}`)
+  .then(response=>response.json())
+  .then(data=>{
+    if(!data.meals){
+        notFoundDiv.innerHTML="not found"
+        notFoundDiv.style.display="block"
+    } else{
+        data.meals.forEach(meal => {
+            const card=document.createElement("div");
+            card.classList.add("recipe-card")
+            card.innerHTML=`
+            <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+            <h2>${meal.strMeal}</h2>
+            <p>${meal.strCategory}</p>
+            <button  class="viewRecipe" data-id="${meal.idMeal}">View Recipe</button>
+            `;
+            recipeDiv.appendChild(card)
+        });
+        
     }
+  })
 })
+document.addEventListener("keydown",(e)=>{
+
+})
+
+// for view recipe
+//  const recipeDiv=document.getElementById("recipes");
+// //  const viewRecipe=document.querySelector(".viewRecipe");
+//  const title=document.getElementById("title");
+//  const popupCard=document.getElementById("popupCard")
+//  const paragraph=document.getElementById("paragraph")
+//  recipeDiv.addEventListener("click",(e)=>{
+// if(e.target.classList.contains("viewRecipe")){
+//     const id=e.target.dataset.id;
+//     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+//     .then(response=>response.json())
+//     .then(data=>{
+//         const meal=data.meals[0]
+//         title.innerText=meal.strMeal;
+//         paragraph.innerText=meal.strInstructions;
+//         popupCard.style.display="block"
+//     })
+// }
+//  })

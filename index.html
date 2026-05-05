@@ -8,22 +8,21 @@
 </head>
 <body>
     <div class="container">
-        <h2>Recipe Finder</h2>
-        <p>Search mouth watering recipe to satisfy your craving</p>
+        <h1>Recipe Finder</h1>
+        <h3>Search mouth watering recipe to satisfy your craving</h3>
         <div class="searchBox">
-            <input type="text" placeholder="Search for recipes" id="searchInput">
-            <button onclick="searchRecipes()">Search</button>
+            <input type="text" placeholder="Search for recipe" id="searchInput">
+            <button id="searchBtn">Search</button>
         </div>
     </div>
-
-    <div class="recipes" id="recipes"></div>
-    <div class="notFound" id="notFound">Search your favorite recipes!</div>
-
-    <div class="popup-card" id="popupCard">
-        <button class="close-btn" onclick="closeRecipe()">Close</button>
-        <h3 id="recipeTitle"></h3>
-        <p id="recipeDetails"></p>
-    </div>
+    <div id="recipes" class="recipes"></div>
+    <div id="notFound" class="notFound">Please enter the Recipe name to search!</div>
+    <!-- for popup -->
+     <!-- <div class="popup-card" id="popupCard">
+        <button id="closeBtn">Close</button>
+        <h1 id="title" class="title"></h1>
+        <p id="paragraph" class="paragraph"></p>
+     </div> -->
     <script src="script.js"></script>
 </body>
 </html>
