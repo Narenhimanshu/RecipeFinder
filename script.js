@@ -35,27 +35,11 @@ if(searchInputBox.trim()===""){
         
     }
   })
-})
+});
+
+// enter press
 document.addEventListener("keydown",(e)=>{
-
-})
-
-// for view recipe
-//  const recipeDiv=document.getElementById("recipes");
-// //  const viewRecipe=document.querySelector(".viewRecipe");
-//  const title=document.getElementById("title");
-//  const popupCard=document.getElementById("popupCard")
-//  const paragraph=document.getElementById("paragraph")
-//  recipeDiv.addEventListener("click",(e)=>{
-// if(e.target.classList.contains("viewRecipe")){
-//     const id=e.target.dataset.id;
-//     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
-//     .then(response=>response.json())
-//     .then(data=>{
-//         const meal=data.meals[0]
-//         title.innerText=meal.strMeal;
-//         paragraph.innerText=meal.strInstructions;
-//         popupCard.style.display="block"
-//     })
-// }
-//  })
+    if(e.key==="Enter"){
+        searchBtn.click();
+    }
+});
