@@ -1,40 +1,47 @@
 const searchBtn=document.getElementById("searchBtn")
 
-searchBtn.addEventListener("click",()=>{
+searchBtn.addEventListener("click",async function(){
     const searchInputBox=document.getElementById("searchInput").value;
     const recipeDiv=document.getElementById("recipes");
 const notFoundDiv=document.getElementById("notFound");
 
 // previoud data 
-notFoundDiv.innerHTML="";
-recipeDiv.innerHTML="";
+notFoundDiv.innerText="";
+recipeDiv.innerText="";
+
 
 if(searchInputBox.trim()===""){
     alert("Please Search you recipe")
     recipeDiv.style.display=""
     return;
+} else{
+    notFoundDiv.innerText="Searching..."
+   
 }
-  fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInputBox}`)
-  .then(response=>response.json())
-  .then(data=>{
+notFoundDiv.innerText="";
+try {
+    const response=await  fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInputBox}`);
+    const data=await response.json();
     if(!data.meals){
-        notFoundDiv.innerHTML="not found"
-        notFoundDiv.style.display="block"
+        notFoundDiv.innerText="Not Found"
     } else{
         data.meals.forEach(meal => {
             const card=document.createElement("div");
             card.classList.add("recipe-card")
             card.innerHTML=`
-            <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+            <img src="${meal.strMealThumb}">
             <h2>${meal.strMeal}</h2>
             <p>${meal.strCategory}</p>
-            <button  class="viewRecipe" data-id="${meal.idMeal}">View Recipe</button>
+            <button class="viewRecipe">View Recipe</button>
             `;
             recipeDiv.appendChild(card)
         });
-        
     }
-  })
+} catch (error) {
+    recipeDiv.innerText="Somethings Error"
+}
+ 
+  
 });
 
 // enter press
